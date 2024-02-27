@@ -18,3 +18,4 @@ FashionMNIST
 
 # datasets for the hw
 !2024/homework/*.zip
+!2024/homeworks/HumanActivityRecognitionWithSmartphones.zip

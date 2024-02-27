@@ -15,3 +15,6 @@ __pycache__
 *.zip
 data
 FashionMNIST
+
+# datasets for the hw
+!2024/homework/*.zip

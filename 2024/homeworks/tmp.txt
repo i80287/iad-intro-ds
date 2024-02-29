@@ -1,0 +1,91 @@
+// 9
+if tBodyAccMag-mean() >= x_0 {
+    WALKING
+    WALKING_DOWNSTAIRS
+    WALKING_UPSTAIRS
+} else {
+    STANDING
+    SITTING
+    LAYING
+}
+
+// 10
+if angle(X,gravityMean) >= 0.27 {
+    return LAYING
+} else {
+    WALKING
+    WALKING_DOWNSTAIRS
+    WALKING_UPSTAIRS
+    STANDING
+    SITTING
+}
+
+// 9
+if tBodyAccMag-mean() >= x_0 {
+    // DYNAMIC
+
+    // 11
+    if tBodyAcc-max()-X >= 0.3 {
+       high probability of WALKING_DOWNSTAIRS
+    } else {
+        WALKING
+        WALKING_UPSTAIRS
+    }
+
+    // 14
+    if tBodyAcc-max()-X < 0.157 &&
+       tGravityAcc-min()-X < 0.78 {
+        return WALKING_UPSTAIRS
+    }
+
+    // 14*
+    if tBodyAcc-max()-X >= 0.5 {
+        return WALKING_DOWNSTAIRS
+    }
+
+    // AFTER ALL
+    if angle(Z, gravityMean) >= 0.4 {
+        return WALKING
+    }
+    if fBodyAcc-skewness()-X >= 0.7 {
+        return WALKING_UPSTAIRS
+    }
+    if angle(Y,gravityMean) >= 0.375 {
+        return WALKING_UPSTAIRS
+    }
+    if angle(X,gravityMean) >= -0.45 {
+        return WALKING_UPSTAIRS
+    }
+    if fBodyAcc-bandsEnergy()-1,8.2 >= 0.25 {
+        return WALKING_UPSTAIRS
+    }
+    if tGravityAcc-min()-X >= 0.95 {
+        return WALKING
+    }
+    if tGravityAcc-min()-X <= 0.7 {
+        return WALKING_UPSTAIRS
+    }
+    return WALKING_UPSTAIRS
+} else {
+    // STATIC
+
+    // 12
+    if angle(Y,gravityMean) >= 0.2 {
+        high probability of STANDING
+    } else if angle(Y,gravityMean) >= -0.25 {
+        high probability of SITTING
+    } else {
+        high probability of LAYING
+    }
+
+    // 13
+    if fBodyAcc-skewness()-X < -0.376 {
+        if angle(Y,gravityMean) < -0.4 {
+            LAYING
+        } else if angle(Y,gravityMean) < 0.136  {
+            SITTING
+        } else {
+            STANDING
+        }
+    }
+}
